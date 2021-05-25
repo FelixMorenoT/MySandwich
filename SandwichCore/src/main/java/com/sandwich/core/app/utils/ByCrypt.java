@@ -10,5 +10,5 @@ public class ByCrypt {
 	@Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    } 
 }
