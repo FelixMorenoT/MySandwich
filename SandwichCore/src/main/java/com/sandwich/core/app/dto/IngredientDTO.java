@@ -21,10 +21,10 @@ public class IngredientDTO {
 	@JsonIgnore
 	private Long id;
 	
-	@JsonProperty(value = "Ingredient Code")
+	@JsonProperty(value = "ingredientCode")
 	private Long codeIngredient;
 	
-	@JsonProperty(value = "Ingredient Name")
+	@JsonProperty(value = "ingredientName")
 	private String nameIngredient;
 	
 	
