@@ -58,4 +58,15 @@ public class ClientService implements IClienteSerive {
 		
 		return response.getReponse(404, "Client Doesn't Exsits");
 	}
+
+	@Override
+	public Client findClientByMail(String clientMail) {
+		var tmpClient = clientRepository.findClientByMail(clientMail);
+		
+		if(tmpClient.isPresent())
+			return tmpClient.get();
+			
+		return null;
+	}
+	
 }
