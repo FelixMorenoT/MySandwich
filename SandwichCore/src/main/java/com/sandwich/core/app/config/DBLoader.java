@@ -4,13 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.sandwich.core.app.model.Carrier;
 import com.sandwich.core.app.model.Client;
 import com.sandwich.core.app.model.Detail;
 import com.sandwich.core.app.model.Ingredient;
+import com.sandwich.core.app.model.PaymentMethod;
 import com.sandwich.core.app.model.Product;
+import com.sandwich.core.app.repository.CarrierRepository;
 import com.sandwich.core.app.repository.ClientRepository;
 import com.sandwich.core.app.repository.DetailsRepository;
 import com.sandwich.core.app.repository.IngredientRepository;
+import com.sandwich.core.app.repository.PaymentMethodRepository;
 import com.sandwich.core.app.repository.ProductRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +25,12 @@ public class DBLoader {
 
 	@Autowired
 	private ProductRepository localProductRepo;
+	
+	@Autowired
+	private CarrierRepository localCarrierRepo;
+	
+	@Autowired
+	private PaymentMethodRepository localPaymentMethodRepo;
 	
 	@Autowired
 	private IngredientRepository localIngredientRepo;
@@ -67,6 +77,37 @@ public class DBLoader {
 				.productCode((long)10003)
 				.productStatus(true)
 				.build());	
+		
+		localCarrierRepo.save(Carrier.builder()
+				.idCarrier((long) 1000)
+				.carrierName("Carrier 1")
+				.carrierNit("11111")
+				.carrierPhoneNumber("314400500")
+				.build());
+		
+		localCarrierRepo.save(Carrier.builder()
+				.idCarrier((long) 2000)
+				.carrierName("Carrier 2")
+				.carrierNit("22222")
+				.carrierPhoneNumber("314400500")
+				.build());
+		
+		localCarrierRepo.save(Carrier.builder()
+				.idCarrier((long) 3000)
+				.carrierName("Carrier 3")
+				.carrierNit("333333")
+				.carrierPhoneNumber("314400500")
+				.build());
+		
+		localPaymentMethodRepo.save(PaymentMethod.builder()
+				.idPaymentMethod((long) 1000)
+				.name("Payment Method 1")
+				.build());
+		
+		localPaymentMethodRepo.save(PaymentMethod.builder()
+				.idPaymentMethod((long) 2000)
+				.name("Payment Method 2")
+				.build());
 		
 		//Intermedio
 		localDetailsRepo.save(Detail.builder()
