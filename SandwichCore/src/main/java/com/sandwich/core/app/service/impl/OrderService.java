@@ -20,6 +20,7 @@ import com.sandwich.core.app.service.IOrderService;
 import com.sandwich.core.app.service.IProductService;
 import com.sandwich.core.app.status.OrderStatus;
 
+
 @Service
 public class OrderService implements IOrderService {
 
@@ -36,10 +37,7 @@ public class OrderService implements IOrderService {
 	public OrderResponse createOrder(OrderDTO requestOrder) {
 		Double amount = 0.0;
 		Order tmpOrder = null ;
-		var response = new OrderResponse();
-		response.setOrderId((long)1);
-		response.setStandardReponse(new StandardReponse().getReponse(200, "ok"));
-		
+
 		var tmpClient = clientService.findClientByMail(requestOrder.getOrderClientMail());
 		
 		if(tmpClient.getId() != null) {
@@ -71,11 +69,11 @@ public class OrderService implements IOrderService {
 						.orderStatus(OrderStatus.CREATED.toString())										
 						.build());
 				
-				
 				return  OrderResponse.builder()
 							.orderId(tmpOrder.getOrderId())
 							.standardReponse(new StandardReponse().getReponse(201, "Orden CREADA"))
 							.build();
+				
 			} catch (ProductNoFoundException e) {
 				e.printStackTrace();
 			}
