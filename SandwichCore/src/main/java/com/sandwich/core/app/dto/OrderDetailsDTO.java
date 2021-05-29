@@ -1,9 +1,8 @@
 package com.sandwich.core.app.dto;
 
-import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,12 +13,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonPropertyOrder(value = {"orderClientMail","orderDetails"})
-public class OrderDTO {
+
+public class OrderDetailsDTO {
 
 	@JsonProperty(required = true)
-	private String orderClientMail;
+	@JsonInclude(Include.NON_NULL)
+	private Long orderProductCode;
 	
 	@JsonProperty(required = true)
-	private List<OrderDetailsDTO> orderDetails;
+	@JsonInclude(Include.NON_NULL)
+	private Long orderQuantity;
 }

@@ -1,14 +1,15 @@
 package com.sandwich.core.app.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.sandwich.core.app.status.OrderStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,16 +25,13 @@ import lombok.NoArgsConstructor;
 public class Order {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
 	
 	private String orderClientMail;
 	
-	private Long orderProductCode;
-	
-	private Double orderProductPrice;
-	
-	private Long orderQuantity;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<OrderDetail> orderDetail;
 	
 	private Double orderTotalAmount;
 	
@@ -43,6 +41,6 @@ public class Order {
 	
 	private Long orderIdfranchise;
 	
-	private OrderStatus orderStatus;
+	private String orderStatus;
 	
 }
