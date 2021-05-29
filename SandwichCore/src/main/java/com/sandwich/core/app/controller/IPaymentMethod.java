@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiResponses;
 
 public interface IPaymentMethod {
 
-	@GetMapping("/PaymentMethod")
+	@GetMapping("/paymentmethod")
 	@ApiOperation(value = "Returns all list payment method", 
 				  response = PaymentMethodDTO.class, 
 				  responseContainer = "Collection")
