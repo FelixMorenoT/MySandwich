@@ -39,4 +39,10 @@ public class Product {
 	
 	@Column(name = "product_status")
 	private boolean productStatus;
+	
+	@Column(name = "product_dis")
+	private Integer productDis;
+	
+	@Column(name = "product_img")
+	private String productImg;
 }

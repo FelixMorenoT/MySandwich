@@ -35,7 +35,8 @@ public class OrderService implements IOrderService {
 	
 	@Override
 	public OrderResponse createOrder(OrderDTO requestOrder) {
-		Double amount = 0.0;
+		Double amountWithDiscount = 0.0;
+		Double amountDiscount = 0.0;
 		Order tmpOrder = null ;
 
 		var tmpClient = clientService.findClientByMail(requestOrder.getOrderClientMail());
@@ -48,21 +49,26 @@ public class OrderService implements IOrderService {
 				
 				for (var orderDetail : tmpOrderDetailsDTO) {
 					var tmpProduct = productService.findByProductCode(orderDetail.getOrderProductCode());
-					
+
 					tmpOrderDetailsModel.add(OrderDetail.builder()
 							.orderDetailProductCode(tmpProduct.getCode())		
 							.orderDetailProductPrice(tmpProduct.getPrice())
 							.orderDetailQuantity(orderDetail.getOrderQuantity())
+							.orderDetailDis(tmpProduct.getDiscount())
 							.build());
 					
-					amount += tmpProduct.getPrice();
+					amountWithDiscount += tmpProduct.getPrice() * orderDetail.getOrderQuantity();								
+					
+					amountDiscount += (tmpProduct.getPrice() * ((double) tmpProduct.getDiscount()/100))* orderDetail.getOrderQuantity() ;
 		
 				}
 				
 				tmpOrder = orderRepository.save(Order.builder()
 						.orderClientMail(tmpClient.getClientMail())
 						.orderDetail(tmpOrderDetailsModel)
-						.orderTotalAmount(amount)
+						.orderTotalAmount(amountWithDiscount)
+						.orderTotalDiscount(amountDiscount)
+						.orderTotal(amountWithDiscount - amountDiscount)
 						.orderDate(LocalDate.now())
 						.orderDestination(tmpClient.getClientAddress())
 						.orderIdfranchise((long) 1)
@@ -79,8 +85,10 @@ public class OrderService implements IOrderService {
 			}
 		} 
 		
-		
-		return new OrderResponse();
+		return OrderResponse.builder()
+				.orderId((long) 0)
+				.standardReponse(new StandardReponse().getReponse(500, "SERVER ERROR"))
+				.build();
 	}
 
 }

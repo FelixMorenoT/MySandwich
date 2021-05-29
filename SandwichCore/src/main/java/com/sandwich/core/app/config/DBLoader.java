@@ -59,15 +59,19 @@ public class DBLoader {
 				.productDescription("Sandwich Milanesa de Pollo con vegetales")
 				.productPrice(8500.0) 
 				.productCode((long)10001)
+				.productDis(10)
 				.productStatus(true)
-				.build());
+				.productImg("https://static7.depositphotos.com/1004373/776/i/950/depositphotos_7760758-stock-photo-sandwich-with-bacon-and-vegetables.jpg")
+				.build()); 
 		
 		localProductRepo.save(Product.builder() 
 				.productName("Sandiwich Carne")
 				.productDescription("Sandiwich Carne con vegetales")
 				.productPrice(9500.0)
 				.productCode((long)10002)
+				.productDis(10)
 				.productStatus(true)
+				.productImg("https://static7.depositphotos.com/1004373/776/i/950/depositphotos_7760758-stock-photo-sandwich-with-bacon-and-vegetables.jpg")
 				.build());
 		
 		localProductRepo.save(Product.builder()
@@ -75,7 +79,9 @@ public class DBLoader {
 				.productDescription("Sandwich Frutos del Mar")
 				.productPrice(10500.0)
 				.productCode((long)10003)
+				.productDis(10)
 				.productStatus(true)
+				.productImg("https://static7.depositphotos.com/1004373/776/i/950/depositphotos_7760758-stock-photo-sandwich-with-bacon-and-vegetables.jpg")
 				.build());	
 		
 		localCarrierRepo.save(Carrier.builder()

@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @ApiModel
-@JsonPropertyOrder(value = {"status","id","code","name","description","price"})
+@JsonPropertyOrder(value = {"status","id","code","name","description","price","discount","ingredients","img"})
 public class ProductDTO {
  
 	private Long id;
@@ -28,7 +28,10 @@ public class ProductDTO {
 	private String description; 
 	private Double price;
 	private List<IngredientDTO> ingredients;
+	private Integer discount;
 	private boolean status;
+	private String img;
+	
 	
 	public Collection<ProductDTO> convertEntityCollection(Collection<Product> products, HashMap<Long, List<IngredientDTO>> ingredients){
 		return products.stream().map(product ->
@@ -40,6 +43,8 @@ public class ProductDTO {
 														.name(product.getProductName())
 														.ingredients(ingredients.get(product.getProductCode()))
 														.status(product.isProductStatus())
+														.discount(product.getProductDis())
+														.img(product.getProductImg())
 														.build()
 		).collect(Collectors.toList());
 	}
@@ -52,7 +57,9 @@ public class ProductDTO {
 							.code(product.getProductCode())
 							.name(product.getProductName())
 							.ingredients(ingredients)
+							.discount(product.getProductDis())
 							.status(product.isProductStatus())
+							.img(product.getProductImg())
 							.build();
 	}
 }

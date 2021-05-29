@@ -33,7 +33,11 @@ public class Order {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<OrderDetail> orderDetail;
 	
+	private Double orderTotalDiscount;
+	
 	private Double orderTotalAmount;
+	
+	private Double orderTotal;
 	
 	private LocalDate orderDate;
 	

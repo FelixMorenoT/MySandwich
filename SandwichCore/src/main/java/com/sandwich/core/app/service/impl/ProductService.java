@@ -41,7 +41,7 @@ public class ProductService implements IProductService{
 	@Override
 	public ProductDTO findByProductCode(Long productCode) throws ProductNoFoundException {
 		var tmpProduct = productRepository.findByProductCode(productCode);
-		List<IngredientDTO> tmpIngredients = ingredientSerive.listIngredientsByProductCode(productCode);
+		List<IngredientDTO> tmpIngredients = ingredientSerive.listIngredientsByProductCode(productCode);	
 		
 		if(tmpProduct != null)
 				return new ProductDTO().convertEntity(tmpProduct, tmpIngredients);

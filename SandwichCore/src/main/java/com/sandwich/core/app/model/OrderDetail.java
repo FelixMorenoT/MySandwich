@@ -28,4 +28,6 @@ public class OrderDetail {
 	private Double orderDetailProductPrice;
 	
 	private Long orderDetailQuantity;
+	
+	private Integer orderDetailDis;
 }
